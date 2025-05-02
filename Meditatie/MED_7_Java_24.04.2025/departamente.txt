@@ -1,0 +1,4 @@
+Departament: Contabilitate - Media salariala: 3500.0
+Departament: HR - Media salariala: 3000.0
+Departament: IT - Media salariala: 7250.0
+Departament: Marketing - Media salariala: 4250.0
