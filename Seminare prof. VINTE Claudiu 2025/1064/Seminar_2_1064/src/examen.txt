@@ -1,0 +1,6 @@
+PAW
+SCRIS
+3
+11 Subiect cu intrebari scurte
+12 Subiect de dificultate medie
+13 Subiect dificil
