@@ -1,0 +1,19 @@
+POO
+Examen{dataExamen=Fri Dec 02 00:00:00 EET 2022, profesor='IANCU Bogdan', disciplina='POO', nrStudInscrisi=120, nrStudExaminati=60}
+Examen{dataExamen=Sat Dec 03 00:00:00 EET 2022, profesor='IANCU Bogdan', disciplina='POO', nrStudInscrisi=120, nrStudExaminati=90}
+Examen{dataExamen=Sun Dec 04 00:00:00 EET 2022, profesor='IANCU Bogdan', disciplina='POO', nrStudInscrisi=120, nrStudExaminati=55}
+
+CTS
+Examen{dataExamen=Sat Feb 09 00:00:00 EET 2019, profesor='ZAMFIROIU Alin', disciplina='CTS', nrStudInscrisi=105, nrStudExaminati=100}
+Examen{dataExamen=Sun Feb 10 00:00:00 EET 2019, profesor='ZURINI Madalina', disciplina='CTS', nrStudInscrisi=105, nrStudExaminati=80}
+
+Fizica cuantica
+Examen{dataExamen=Mon Dec 03 00:00:00 EET 2018, profesor='AVRAM Alina', disciplina='Fizica cuantica', nrStudInscrisi=120, nrStudExaminati=50}
+
+Biologie celulara
+Examen{dataExamen=Tue Nov 26 00:00:00 EET 2024, profesor='BANCIU Daniel', disciplina='Biologie celulara', nrStudInscrisi=250, nrStudExaminati=195}
+
+Statistica macroeconomica
+Examen{dataExamen=Fri Mar 15 00:00:00 EET 2024, profesor='APOSTU Silvia', disciplina='Statistica macroeconomica', nrStudInscrisi=135, nrStudExaminati=135}
+Examen{dataExamen=Sat Mar 16 00:00:00 EET 2024, profesor='BEGU Catalin', disciplina='Statistica macroeconomica', nrStudInscrisi=120, nrStudExaminati=120}
+
