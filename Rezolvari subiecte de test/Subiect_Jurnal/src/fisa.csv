@@ -1,0 +1,9 @@
+NotaContabila{idNotaContabila='1', dataOperatiunii=Tue Apr 01 00:00:00 EEST 2025, contDebitor=5311, contCreditor=5121, suma=1000.59}
+NotaContabila{idNotaContabila='9', dataOperatiunii=Sun Aug 11 00:00:00 EEST 2024, contDebitor=5311, contCreditor=5121, suma=1580.59}
+NotaContabila{idNotaContabila='2', dataOperatiunii=Sat Apr 03 00:00:00 EEST 2021, contDebitor=5678, contCreditor=9023, suma=1500.9}
+NotaContabila{idNotaContabila='3', dataOperatiunii=Tue Sep 07 00:00:00 EEST 2021, contDebitor=4567, contCreditor=8904, suma=1899.99}
+NotaContabila{idNotaContabila='8', dataOperatiunii=Tue Sep 17 00:00:00 EEST 2024, contDebitor=4567, contCreditor=8904, suma=1899.99}
+NotaContabila{idNotaContabila='4', dataOperatiunii=Tue May 09 00:00:00 EEST 2023, contDebitor=4368, contCreditor=9023, suma=7000.0}
+NotaContabila{idNotaContabila='6', dataOperatiunii=Sun May 29 00:00:00 EEST 2022, contDebitor=4368, contCreditor=9023, suma=5700.99}
+NotaContabila{idNotaContabila='7', dataOperatiunii=Wed Dec 18 00:00:00 EET 2024, contDebitor=4368, contCreditor=9023, suma=7999.89}
+NotaContabila{idNotaContabila='5', dataOperatiunii=Tue Jan 10 00:00:00 EET 2023, contDebitor=1234, contCreditor=5678, suma=900.1}

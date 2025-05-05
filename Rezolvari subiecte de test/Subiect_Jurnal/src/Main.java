@@ -94,10 +94,8 @@ final class NotaContabila implements Comparator<NotaContabila>,
             return 1;
         } else if (this.dataOperatiunii.after(nota.dataOperatiunii)) {
             return -1;
-        } else if (this.dataOperatiunii.equals(nota.dataOperatiunii)) {
+        } else{
             return 0;
-        }else{
-            return -2;
         }
     }
 
@@ -113,7 +111,7 @@ final class NotaContabila implements Comparator<NotaContabila>,
 }
 
 public class Main {
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
         List<NotaContabila> listaJurnal = new ArrayList<>();
         try(BufferedReader br = new BufferedReader(
                 new FileReader("src\\jurnal.csv"))){
@@ -150,7 +148,7 @@ public class Main {
         }
         System.out.println("Rulajul total = " + rulajTotal);
 
-        System.out.println("\n--------------------  --------------------");
+        System.out.println("\n-------------------- Mapare by Debitor --------------------");
 
         Map<Integer, List<NotaContabila>> mapJurnalByDebitor = listaJurnal.stream()
                 .collect(Collectors.groupingBy(NotaContabila::getContDebitor));
@@ -163,6 +161,22 @@ public class Main {
             }
         }
 
+        System.out.println("\n-------------------- Scriere in fisier csv --------------------");
 
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter("src\\fisa.csv"))){
+            for(var n: listaJurnal){
+                bw.write(n.toString());
+                bw.write("\n");
+            }
+        }
+
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter("src\\fisa2.csv"))){
+            for(var n: listaJurnal){
+                bw.write(n.getDataOperatiunii().toString() + ",");
+                bw.write(n.getContDebitor() + ",");
+                bw.write(String.valueOf(n.getSuma()));
+                bw.write("\n");
+            }
+        }
     }
 }
