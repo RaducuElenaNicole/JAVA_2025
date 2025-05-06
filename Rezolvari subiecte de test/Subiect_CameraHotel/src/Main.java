@@ -1,13 +1,10 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-final class Camera implements Comparable<Camera> {
+final class Camera implements Comparable<Camera>, Serializable {
     private String codCamera;
     private int nrPaturi;
     private float tarifPerNoapte;
@@ -63,6 +60,10 @@ final class Camera implements Comparable<Camera> {
         this.nrZileOcupatePerAn = nrZileOcupatePerAn;
     }
 
+    public float procentajOcupare(){
+        return (this.nrZileOcupatePerAn * 100)/365;
+    }
+
     public float tarifPerPat(){
         return this.tarifPerNoapte / this.nrPaturi;
     }
@@ -81,7 +82,7 @@ final class Camera implements Comparable<Camera> {
 }
 
 public class Main {
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
         Map<String, Camera> mapCamere = new HashMap<>();
         try(BufferedReader br = new BufferedReader
                 (new FileReader("src\\camereHotel.txt"))){
@@ -95,11 +96,23 @@ public class Main {
             throw new RuntimeException(e);
         }
 
+        System.out.println("\nCERINTA 2 -------------------- Afisare camere dupa citirea din fisierul txt");
+
         for(var c: mapCamere.entrySet()){
             System.out.println(c.toString());
         }
 
-        System.out.println("\n--------------------");
+        System.out.println("\nCERINTA 2 -------------------- Afisare camere care indeplinesc o conditie " +
+                "- procentajul de ocupare al camerei este mai mare de 50%");
+
+        for(var c: mapCamere.entrySet()){
+            if(c.getValue().procentajOcupare() > 50) {
+                System.out.println(c.toString()
+                        + " -> Procentajul de ocupare = " + c.getValue().procentajOcupare());
+            }
+        }
+
+        System.out.println("\nCERINTA 3 -------------------- Mapare dupa numarul de paturi dintr-o camera de hotel");
 
         Map<Integer, List<Camera>> mapCamereByNrPaturi =
                 mapCamere.values().stream()
@@ -117,8 +130,35 @@ public class Main {
             }
         }
 
-        System.out.println("\n--------------------");
+        System.out.println("\nCERINTA 4 -------------------- Salvare in fisier binar");
 
-        // De facut salvarea in fisier binar si citirea din fisier binar 
+        try(ObjectOutputStream oos = new ObjectOutputStream
+                (new FileOutputStream("src\\camereEficiente.dat"))){
+            for(var c: mapCamere.entrySet()){
+                if(c.getValue().procentajOcupare() > 70) {
+                    oos.writeObject(c.getValue());
+                }
+            }
+        }
+
+        System.out.println("\nCERINTA 5 -------------------- Citire din fisier binar");
+
+        try(ObjectInputStream ois = new ObjectInputStream
+                (new FileInputStream("src\\camereEficiente.dat"))){
+            while(true){
+                try{
+                    Camera cameraBinar = (Camera) ois.readObject();
+
+                    System.out.println(cameraBinar.toString() +
+                            " -> Procentajul de ocupare = " + cameraBinar.procentajOcupare());
+
+                }catch(EOFException e){
+                    break;
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+
     }
 }
