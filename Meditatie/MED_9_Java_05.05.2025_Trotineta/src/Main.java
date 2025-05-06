@@ -1,8 +1,8 @@
 import java.io.*;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.logging.SimpleFormatter;
 import java.util.stream.Collectors;
 
 final class Trotineta implements Comparable<Trotineta>, Serializable {
@@ -87,9 +87,10 @@ final class Trotineta implements Comparable<Trotineta>, Serializable {
 }
 
 public class Main {
-    public static void main(String[] args) throws FileNotFoundException {
-        Map<String, Trotineta> mapTrotinetaFisier = new HashMap<>();
+    public static void main(String[] args) throws IOException {
+        System.out.println("\n------------- Citire din fisier txt sub forma de dictionar (map)");
 
+        Map<String, Trotineta> mapTrotinetaFisier = new HashMap<>();
         try(BufferedReader br = new BufferedReader(new FileReader("src\\trotinete.txt"))){
             mapTrotinetaFisier = br.lines().map(x -> new Trotineta(
                     x.split(",")[0], // id
@@ -100,13 +101,41 @@ public class Main {
             throw new RuntimeException(e);
         }
 
-        System.out.println("\n-------------");
-
         for(var t: mapTrotinetaFisier.entrySet()){
             System.out.println(t.getValue());
         }
 
-        System.out.println("\n-------------");
+        System.out.println("\n------------- Citire fisier cu un camp Date ");
+
+        List<Trotineta> listaTrotineta = new ArrayList<>();
+        try(BufferedReader br = new BufferedReader(new FileReader("src\\trotinete2.txt"))){
+            String linie = br.readLine();
+            SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
+            while(linie != null){
+                String[] detaliiTrotineta = linie.split(",");
+
+                String id = detaliiTrotineta[0];
+                float distanta = Float.parseFloat(detaliiTrotineta[1]);
+                float viteza = Float.parseFloat(detaliiTrotineta[2]);
+
+                Trotineta troti = new Trotineta(id, distanta, viteza);
+                listaTrotineta.add(troti);
+
+                Date dataTrotiFisier = formatter.parse(detaliiTrotineta[3]);
+
+                System.out.println("Data: " + dataTrotiFisier);
+
+                linie = br.readLine();
+            }
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
+        for(var t:listaTrotineta){
+            System.out.println(t.toString());
+        }
+
+        System.out.println("\n------------- Afisare trotiente care indeplinesc o conditie");
 
         for(var t: mapTrotinetaFisier.entrySet()){
             if(t.getValue().getVitezaMedie() > 50) {
@@ -114,7 +143,7 @@ public class Main {
             }
         }
 
-        System.out.println("\n-------------");
+        System.out.println("\n------------- Mapare trotinete By viteza");
 
         Map<Float, List<Trotineta>> mapTrotinetaByViteza = mapTrotinetaFisier.values()
                 .stream().collect(Collectors.groupingBy(Trotineta::getVitezaMedie));
@@ -127,6 +156,37 @@ public class Main {
                     + " | Suma distante parcurse: " + sumaDistante);
             for(var t: troti.getValue()){
                 System.out.println("   " + t.toString());
+            }
+        }
+
+        System.out.println("\n------------- Salvare fisier binar");
+
+        try(ObjectOutputStream oos = new ObjectOutputStream
+                (new FileOutputStream("src\\trotineteRapide.dat"))){
+            for(var t: mapTrotinetaFisier.entrySet()){
+                if(t.getValue().getVitezaMedie() > 14 && t.getValue().getVitezaMedie() <= 50) {
+                    oos.writeObject(t.getValue());
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("Salvare detalii trotinete care indeplinesc o conditie intr-un fisier binar!");
+
+        System.out.println("\n------------- Citire din fisier binar");
+
+        try(ObjectInputStream ois = new ObjectInputStream
+                (new FileInputStream("src\\trotineteRapide.dat"))){
+            while(true){
+                try{
+                    Trotineta t = (Trotineta) ois.readObject();
+                    System.out.println(t.toString());
+
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }catch(EOFException e){
+                    break; // s-a terminat fisier => se iese fortat din while
+                }
             }
         }
 
