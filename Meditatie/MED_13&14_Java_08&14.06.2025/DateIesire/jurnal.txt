@@ -1,0 +1,5 @@
+2 Patrascu Cosmin 3 9.55 
+5 Radu Vlad 1 10.0 
+3 Viulet Cosmina 1 9.8 
+4 Manucu Denisa 1 9.5 
+1 Pop Marcel 1 8.5 
