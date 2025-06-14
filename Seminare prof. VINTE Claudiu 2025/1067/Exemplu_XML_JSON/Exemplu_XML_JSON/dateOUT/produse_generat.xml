@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<produse>
+    <produs>
+        <cod>1</cod>
+        <denumire>Nuci 500g</denumire>
+        <tranzactii>
+            <tranzactie cantitate="10" tip="intrare"/>
+            <tranzactie cantitate="5" tip="iesire"/>
+            <tranzactie cantitate="6" tip="intrare"/>
+        </tranzactii>
+    </produs>
+    <produs>
+        <cod>2</cod>
+        <denumire>Alune de padure 700g</denumire>
+        <tranzactii/>
+    </produs>
+    <produs>
+        <cod>3</cod>
+        <denumire>Ceai verde Lipton</denumire>
+        <tranzactii>
+            <tranzactie cantitate="7" tip="intrare"/>
+            <tranzactie cantitate="2" tip="iesire"/>
+            <tranzactie cantitate="1" tip="iesire"/>
+            <tranzactie cantitate="1" tip="iesire"/>
+        </tranzactii>
+    </produs>
+</produse>

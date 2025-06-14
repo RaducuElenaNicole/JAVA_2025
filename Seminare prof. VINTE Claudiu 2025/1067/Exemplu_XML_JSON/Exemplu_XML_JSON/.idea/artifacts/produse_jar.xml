@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="produse:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/produse_jar</output-path>
+    <properties id="ant-postprocessing">
+      <options enabled="true" />
+    </properties>
+    <root id="archive" name="produse.jar">
+      <element id="module-output" name="produse" />
+    </root>
+  </artifact>
+</component>

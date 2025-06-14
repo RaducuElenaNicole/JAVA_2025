@@ -1,0 +1,26 @@
+Student
+4
+nume
+Ion
+varsta
+17
+adresa
+Str. Zambilelor
+pers
+Persoana
+1
+cnp
+477049328123412
+Student
+4
+nume
+Marian
+varsta
+21
+adresa
+Str. Florilor
+pers
+Persoana
+1
+cnp
+3454232242434434

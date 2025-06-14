@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact build-on-make="true" name="carte:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/carte_jar</output-path>
+    <root id="root">
+      <element id="archive" name="carte.jar">
+        <element id="module-output" name="carte" />
+      </element>
+    </root>
+  </artifact>
+</component>
